@@ -1,25 +1,27 @@
-// script.js
+// Moving 'No' button on click
+document.getElementById("noBtn").addEventListener("click", function() {
+    var noBtn = document.getElementById("noBtn");
+    var maxWidth = window.innerWidth - noBtn.offsetWidth;
+    var maxHeight = window.innerHeight - noBtn.offsetHeight;
 
-// Handle the 'Yes' button click (show the second page)
-document.getElementById('yesBtn').addEventListener('click', function() {
-    document.getElementById('sorryPage').style.display = 'none';
-    document.getElementById('secondPage').style.display = 'block';
+    var randomX = Math.random() * maxWidth;
+    var randomY = Math.random() * maxHeight;
+
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+
+    // Wait for the 'No' button click before moving to second page
+    setTimeout(function() {
+        // Hide the first page
+        document.getElementById("sorryPage").style.display = "none";
+        
+        // Show the second page
+        document.getElementById("secondPage").style.display = "flex";
+    }, 500); // Delay for the button to move around before switching to the second page
 });
 
-// Handle the 'No' button click (make it move around)
-document.getElementById('noBtn').addEventListener('click', function() {
-    moveButton();
+// Show cat GIF and "Thanks" message when 'Yes' is clicked on second page
+document.getElementById("yesSecondPage").addEventListener("click", function() {
+    var catGifPopup = document.getElementById("catGifPopup");
+    catGifPopup.style.display = "flex";
 });
-
-// Function to move the "No" button randomly around the screen
-function moveButton() {
-    const btn = document.getElementById('noBtn');
-    const maxX = window.innerWidth - btn.offsetWidth;
-    const maxY = window.innerHeight - btn.offsetHeight;
-    
-    const randomX = Math.random() * maxX;
-    const randomY = Math.random() * maxY;
-
-    btn.style.left = `${randomX}px`;
-    btn.style.top = `${randomY}px`;
-}
