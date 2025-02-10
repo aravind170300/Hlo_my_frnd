@@ -1,65 +1,187 @@
-// script.js
-
-// Handle the 'Yes' button click (show the second page)
-document.getElementById('yesBtn').addEventListener('click', function() {
-    document.getElementById('sorryPage').style.display = 'none';
-    document.getElementById('secondPage').style.display = 'block';
-});
-
-// Handle the 'No' button click (make it move around the entire page)
-document.getElementById('noBtn').addEventListener('click', function() {
-    moveButton();
-});
-
-// Function to move the "No" button randomly around the entire page
-function moveButton() {
-    const btn = document.getElementById('noBtn');
-
-    // Get the width and height of the window
-    const maxX = window.innerWidth - btn.offsetWidth;
-    const maxY = window.innerHeight - btn.offsetHeight;
-
-    // Add a condition to make the button move less on small screens (optional)
-    if (window.innerWidth <= 600) {
-        // Limit movement on mobile devices (allow the button to move within 80% of the screen)
-        maxX *= 0.8;
-        maxY *= 0.8;
-    }
-
-    // Calculate random positions within the window
-    const randomX = Math.random() * maxX;
-    const randomY = Math.random() * maxY;
-
-    // Update the position of the button
-    btn.style.position = 'absolute';
-    btn.style.left = `${randomX}px`;
-    btn.style.top = `${randomY}px`;
+/* Basic styling for the page */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;  /* Full viewport height */
 }
 
-// Handle the second 'Yes' button on the second page (trigger crackers burst)
-document.getElementById('yesBtnSecondPage').addEventListener('click', function() {
-    triggerCrackers();
-});
+/* Container to center and limit page size */
+.container {
+    width: 80%;  /* Set a maximum width */
+    max-width: 1000px;  /* Max width for larger screens */
+    text-align: center;
+    padding: 20px;
+}
 
-// Function to trigger crackers burst
-function triggerCrackers() {
-    const container = document.getElementById('crackersContainer');
+/* Styling for the 'Sorry' page */
+#sorryPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100%;
+}
 
-    // Create 30 crackers that burst randomly around the screen
-    for (let i = 0; i < 30; i++) {
-        const cracker = document.createElement('div');
-        cracker.classList.add('cracker');
+/* Image animation */
+#sorryImage {
+    width: 250px;
+    height: 250px;
+    animation: bounce 1s infinite alternate;
+}
 
-        // Set random position for the cracker
-        cracker.style.left = `${Math.random() * window.innerWidth}px`;
-        cracker.style.top = `${Math.random() * window.innerHeight}px`;
+/* Bounce effect for the "Sorry" image */
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-20px);
+    }
+}
 
-        // Append the cracker to the container
-        container.appendChild(cracker);
+/* Style for the buttons */
+button {
+    padding: 20px 40px;  /* Increased padding */
+    margin: 20px;
+    font-size: 24px;  /* Increased font size */
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;  /* Rounded corners */
+    transition: background-color 0.3s, transform 0.2s;
+    background-color: #4CAF50;  /* Green background */
+    color: white;
+}
 
-        // Remove the cracker after animation ends
-        setTimeout(() => {
-            container.removeChild(cracker);
-        }, 1000); // 1000ms matches the animation duration
+/* Hover effect for buttons */
+button:hover {
+    background-color: #45a049;
+    transform: scale(1.1);  /* Slight scaling on hover */
+}
+
+/* Button that moves around the page */
+#noBtn {
+    position: absolute;
+}
+
+/* Styling for the second page */
+#secondPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+#mrBeanImage {
+    width: 300px;
+    height: 300px;
+}
+
+/* Crackers container */
+#crackersContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;  /* Allow clicks to go through */
+    z-index: 9999;  /* Ensure it's on top */
+}
+
+/* Crackers burst animation */
+@keyframes crackerBurst {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* Crackers styling */
+.cracker {
+    position: absolute;
+    background-color: red;
+    width: 15px; /* Increased size for crackers */
+    height: 15px; /* Increased size for crackers */
+    border-radius: 50%;
+    animation: crackerBurst 1s ease-out forwards;
+    opacity: 0;
+}
+
+/* Media Queries for Different Screen Sizes */
+
+/* Mobile Devices (screens up to 600px) */
+@media (max-width: 600px) {
+    .container {
+        width: 90%;
+    }
+
+    #sorryImage {
+        width: 180px;
+        height: 180px;
+    }
+
+    button {
+        font-size: 18px;  /* Adjust font size for mobile */
+        padding: 15px 30px;  /* Adjust padding for mobile */
+    }
+
+    #mrBeanImage {
+        width: 220px;
+        height: 220px;
+    }
+}
+
+/* Tablets (screens between 601px and 900px) */
+@media (min-width: 601px) and (max-width: 900px) {
+    .container {
+        width: 85%;
+    }
+
+    #sorryImage {
+        width: 200px;
+        height: 200px;
+    }
+
+    button {
+        font-size: 20px;  /* Adjust font size for tablet */
+        padding: 18px 36px;  /* Adjust padding for tablet */
+    }
+
+    #mrBeanImage {
+        width: 250px;
+        height: 250px;
+    }
+}
+
+/* Laptops and Desktops (screens larger than 900px) */
+@media (min-width: 901px) {
+    .container {
+        width: 70%;
+    }
+
+    #sorryImage {
+        width: 250px;
+        height: 250px;
+    }
+
+    button {
+        font-size: 24px;  /* Larger font size for laptops/desktops */
+        padding: 20px 40px;  /* Larger padding for laptops/desktops */
+    }
+
+    #mrBeanImage {
+        width: 300px;
+        height: 300px;
     }
 }
