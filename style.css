@@ -1,10 +1,10 @@
-/* styles.css */
-
 /* Basic styling for the page */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
+    margin: 0;
     padding: 20px;
+    background-color: #f9f9f9;
 }
 
 /* Styling for the 'Sorry' page */
@@ -13,6 +13,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
+    height: 100vh;  /* Full viewport height */
 }
 
 /* Image animation */
@@ -58,9 +60,104 @@ button:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    display: none;
 }
 
 #mrBeanImage {
     width: 300px;
     height: 300px;
+}
+
+/* Crackers container */
+#crackersContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;  /* Allow clicks to go through */
+    z-index: 9999;  /* Ensure it's on top */
+}
+
+/* Crackers burst animation */
+@keyframes crackerBurst {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* Crackers styling */
+.cracker {
+    position: absolute;
+    background-color: red;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    animation: crackerBurst 1s ease-out forwards;
+    opacity: 0;
+}
+
+/* Media Queries for Different Screen Sizes */
+
+/* Mobile Devices (screens up to 600px) */
+@media (max-width: 600px) {
+    #sorryPage {
+        padding: 10px;
+    }
+
+    #sorryImage {
+        width: 150px;
+        height: 150px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+
+    #mrBeanImage {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+/* Tablets (screens between 601px and 900px) */
+@media (min-width: 601px) and (max-width: 900px) {
+    #sorryImage {
+        width: 180px;
+        height: 180px;
+    }
+
+    button {
+        font-size: 15px;
+        padding: 9px 18px;
+    }
+
+    #mrBeanImage {
+        width: 250px;
+        height: 250px;
+    }
+}
+
+/* Laptops and Desktops (screens larger than 900px) */
+@media (min-width: 901px) {
+    #sorryImage {
+        width: 200px;
+        height: 200px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    #mrBeanImage {
+        width: 300px;
+        height: 300px;
+    }
 }
