@@ -1,0 +1,66 @@
+/* styles.css */
+
+/* Basic styling for the page */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Styling for the 'Sorry' page */
+#sorryPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Image animation */
+#sorryImage {
+    width: 200px;
+    height: 200px;
+    animation: bounce 1s infinite alternate;
+}
+
+/* Bounce effect for the "Sorry" image */
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Style for the buttons */
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #f0f0f0;
+}
+
+/* Button that moves around the page */
+#noBtn {
+    position: absolute;
+}
+
+/* Styling for the second page */
+#secondPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#mrBeanImage {
+    width: 300px;
+    height: 300px;
+}
