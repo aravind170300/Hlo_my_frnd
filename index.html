@@ -1,25 +1,33 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorry Animation</title>
+    <title>Sorry Page</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="sorryPage">
-        <img src="sorry-image.gif" alt="Sorry" id="sorryImage">
-        <h1>Hey Samrudhi Madam, Are you angry at me?</h1>
-        <button id="yesBtn">Yes</button>
-        <button id="noBtn">No</button>
+    <div class="container">
+        <!-- First Page: Sorry Page -->
+        <div id="sorryPage">
+            <img src="sorry-image.gif" id="sorryImage" alt="Sorry!">
+            <button id="yesBtn">Yes</button>
+            <button id="noBtn">No</button>
+        </div>
+
+        <!-- Second Page -->
+        <div id="secondPage">
+            <img src="mr-bean-sad.png" id="mrBeanImage" alt="Mr. Bean Sad">
+            <button id="yesSecondPage">Yes, let's go for Chai</button>
+        </div>
+
+        <!-- Cat GIF Popup -->
+        <div id="catGifPopup">
+            <img src="cat-gif.gif" alt="Cat Gif">
+            <div class="thanksMessage">Thanks!</div>
+        </div>
     </div>
-    <div id="secondPage" style="display: none;">
-        <img src="mr-bean-sad.png" alt="Mr Bean Sad" id="mrBeanImage">
-        <h1>Can we go for a cup of chai tomorrow?</h1>
-        <button id="yesBtnSecondPage">Yes</button> <!-- Second "Yes" button -->
-    </div>
-    <div id="crackersContainer"></div> <!-- Container for the crackers burst animation -->
+
     <script src="script.js"></script>
 </body>
 </html>
